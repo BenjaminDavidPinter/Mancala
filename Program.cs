@@ -74,5 +74,16 @@ namespace Mancala
         {
             Board.GetBestMove(new Board(), Player.one, 1);
         }
+
+        [Benchmark]
+        public void Random_100_Moves()
+        {
+            Random r = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                Board.Move(new Board(), r.Next(0, 6));
+                Board.Move(new Board(), r.Next(7, 13));
+            }
+        }
     }
 }

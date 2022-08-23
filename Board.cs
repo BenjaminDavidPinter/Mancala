@@ -227,7 +227,11 @@ namespace Mancala
             if(currentSpace.Stones == 1
                 && GetPlayerFromWellIndex(currentSpace.Index) == movePlayer)
             {
-                board.Spaces[GetScoreWellForPlayer(movePlayer)].Stones += board.Spaces[GetWellOnOppositeSide(currentSpace.Index)].Stones;
+                board.Spaces[GetScoreWellForPlayer(movePlayer)].Stones =
+                    (short)(board.Spaces[GetScoreWellForPlayer(movePlayer)].Stones + 
+                    board.Spaces[GetWellOnOppositeSide(currentSpace.Index)].Stones + 1);
+                currentSpace.Stones = 0;
+
                 board.Spaces[GetWellOnOppositeSide(currentSpace.Index)].Stones = 0;
 #if DEBUG
                 Console.WriteLine($"\tStealing from {GetWellOnOppositeSide(currentSpace.Index)}");
